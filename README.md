@@ -44,4 +44,6 @@ Four function calls are pre-programmed in file "function_calls.py", with a short
 
 
 [1] Bernoulli, Jacob. “Reisbüchlein,” 1676. https://swisscollections.ch/Record/991170522084805501.
+
+
 [2] Alassi, Sepideh. “From the Mechanics of Jacob Bernoulli to Digital History of Science. Infra- structure, Tools, and Methods.” University of Basel, 2020. https://edoc.unibas.ch/81737/.
