@@ -1,0 +1,8 @@
+date,nameLocation,geonameID,wikiLink,type,cost,nameCurrency,Long,Lat
+GREGORIAN:1676-08-25,Moudon,2659569,https://www.wikidata.org/wiki/Q70202,Lunch,1.0,Francken,6.79743,46.66871
+GREGORIAN:1676-08-26,Rolle,2658989,https://www.wikidata.org/wiki/Q69570,Lunch,12.0,Schweitzbz,6.33167,46.45755
+GREGORIAN:1676-08-20:1676-08-21,Liestal,2659891,https://www.wikidata.org/wiki/Q68972,Stay,2.0,Francken,7.735,47.483888888
+GREGORIAN:1676-08-23:1676-08-24,Biel,2661513,https://www.wikidata.org/wiki/Q1034,Stay,5.5,Francken,7.247222222,47.137222222
+GREGORIAN:1676-08-24:1676-08-25,Avenches,2661661,https://www.wikidata.org/wiki/Q43236,Stay,16.0,Schweitzbz,7.0398,46.88
+GREGORIAN:1676-08-25:1676-08-26,Lausanne,2659994,https://www.wikidata.org/wiki/Q807,Stay,17.0,Schweitzbz,6.633333333,46.533333333
+GREGORIAN:1676-08-26:1676-08-27,Coppet,2661124,https://www.wikidata.org/wiki/Q57097,Stay,19.0,Schweitzbz,6.18907,46.32135

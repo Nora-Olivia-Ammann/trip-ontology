@@ -1,0 +1,181 @@
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix knora-base: <http://www.knora.org/ontology/knora-base#> .
+@prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#> .
+@prefix standoff: <http://www.knora.org/ontology/standoff#> .
+@prefix biblio: <http://www.knora.org/ontology/0801/biblio#> .
+@base <http://www.knora.org/ontology/0801/beol#> .
+
+@prefix : <http://www.knora.org/ontology/0801/beol#> .
+
+# THIS IS AN EXTENSION TO THE BEOL ONTOLOGY
+
+##########################################################
+#
+# PROPERTIES
+#
+#########################################################
+
+
+### ###########################################
+### beol:hasParent
+
+:hasParent rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat Elternteil"@de ,
+                        "has parent"@en ;
+
+        rdfs:comment """Represents a parent relation"""@en ;
+
+        knora-base:subjectClassConstraint :person ;
+
+        knora-base:objectClassConstraint :person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### beol:hasParentValue
+
+:hasParentValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat Elternteil"@de ,
+                        "has parent"@en ;
+
+        rdfs:comment """Represents a parent relation"""@en ;
+
+        knora-base:subjectClassConstraint :person ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### beol:hasBrotherInLaw
+:hasBrotherInLaw rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat Schwager"@de ,
+                        "has brother-in-law"@en ;
+
+        rdfs:comment """Represents a family relation"""@en ;
+
+        knora-base:subjectClassConstraint :person ;
+
+        knora-base:objectClassConstraint :person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### beol:hasBrotherInLawValue
+
+:hasBrotherInLawValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat Schwager"@de ,
+                        "has brother-in-law"@en ;
+
+        rdfs:comment """Represents a family relation"""@en ;
+
+        knora-base:subjectClassConstraint :person ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### beol:hasDisability
+
+:hasDisability rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "hat eine Behinderung"@de ,
+                        "has a disability"@en ;
+
+        rdfs:comment """Represents a disability a person had during their life."""@en ;
+
+        knora-base:subjectClassConstraint :person ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+##########################################################
+#
+# RESOURCES
+#
+##########################################################
+
+
+### ###########################################
+### beol:manuscriptSubentry
+:manuscriptSubentry rdf:type owl:Class ;
+
+          rdfs:subClassOf :manuscriptEntry ;
+
+          rdfs:label "Unterteil eines Manuskripteintrags."@de ,
+                     "Part of a manuscript entry."@en ;
+
+          rdfs:comment """Ein Unterteil eines Manuskripteintrags."""@de ,
+                       """A subpart of a manuscript entry."""@en .
+
+
+### ###########################################
+### beol:person
+
+:person rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource, foaf:Person,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasParent ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "28"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasParentValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "28"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasBrotherInLaw ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "29"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasBrotherInLawValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "29"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasDisability ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "30"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasResidence ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "34"^^xsd:nonNegativeInteger
+        ] .

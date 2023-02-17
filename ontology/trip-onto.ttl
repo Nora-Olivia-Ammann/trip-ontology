@@ -1,0 +1,1805 @@
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix currency: <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix knora-base: <http://www.knora.org/ontology/knora-base#> .
+@prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#> .
+@prefix standoff: <http://www.knora.org/ontology/standoff#> .
+@prefix beol: <http://www.knora.org/ontology/0801/beol#> .
+@prefix : <http://www.knora.org/ontology/0801/trip#> .
+@base <http://www.knora.org/ontology/0801/trip#> .
+
+<http://www.knora.org/ontology/0801/trip> rdf:type owl:Ontology ;
+rdfs:label "Trip" ;
+knora-base:attachedToProject <http://rdfh.ch/projects/yTerZGyxjZVqFMNNKXCDPF> .
+
+
+
+##########################################################
+#
+# PROPERTIES
+#
+#########################################################
+
+
+### ###########################################
+### trip:accordingTo
+
+:accordingTo rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "ist Informationsquelle"@de ,
+                   "is source of information"@en ;
+
+        rdfs:comment """Represents the source of information."""@en ;
+
+        knora-base:objectClassConstraint beol:person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:accordingToValue
+
+:accordingToValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "ist Informationsquelle"@de ,
+                   "is source of information"@en ;
+
+        rdfs:comment """Represents the source of information."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasAccommodationType
+
+:hasAccommodationType rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Art der Unterkunft"@de ,
+                   "accommodation type"@en ;
+
+        rdfs:comment """Represents the type of an accommodation."""@en ;
+
+        knora-base:subjectClassConstraint :accommodation ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:hasActivity
+
+:hasActivity rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Aktivität"@de ,
+                   "Activity"@en ;
+
+        rdfs:comment """Represents an activity."""@en ;
+
+        knora-base:objectClassConstraint :activity ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasActivityType
+
+:hasActivityType rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Aktivitätsart"@de ,
+                   "Activity type"@en ;
+
+        rdfs:comment """Represents the type of an an activity."""@en ;
+
+        knora-base:subjectClassConstraint :activity ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:hasActivityValue
+
+:hasActivityValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Aktivität"@de ,
+                   "Activity"@en ;
+
+        rdfs:comment """Represents an activity."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasAlternativeName
+
+:hasAlternativeName rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Alternativer Name"@de ,
+                   "Alternative name"@en ;
+
+        rdfs:comment """Represents alternative name."""@en ;
+
+        knora-base:objectClassConstraint knora-base:TextValue ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasArchitectureType
+
+:hasArchitectureType rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Struktur Art"@de ,
+                   "Structure type"@en ;
+
+        rdfs:comment """Represents the type of an architectural structure."""@en ;
+
+        knora-base:subjectClassConstraint :architecture ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:hasCost
+
+:hasCost rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue, currency:hasPrice ;
+
+        rdfs:label "Kosten"@de ,
+                   "Cost"@en ;
+
+        rdfs:comment """Represents the cost."""@en ;
+
+        knora-base:objectDatatypeConstraint xsd:float ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasCurrency
+
+:hasCurrency rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue, currency:hasCurrency ;
+
+        rdfs:label "Währung"@de ,
+                   "Currency"@en ;
+
+        rdfs:comment """Represents the currency of a payment."""@en ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:hasComment
+
+:hasComment rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Kommentar"@de ,
+                   "Comment"@en ;
+
+        rdfs:comment """Represents a human readable comment."""@en ;
+
+        knora-base:objectClassConstraint knora-base:TextValue ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasDate
+
+:hasDate rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue, dcterms:date ;
+
+        rdfs:label "Datum"@de ,
+                   "Date"@en ;
+
+        rdfs:comment """Represents the date, can be an interval."""@en ;
+
+        knora-base:objectClassConstraint knora-base:DateValue ;
+
+        salsah-gui:guiElement salsah-gui:Date .
+
+
+### ###########################################
+### trip:hasDestination
+
+:hasDestination rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat Reiseziel"@de ,
+                   "has destination"@en ;
+
+        rdfs:comment """Represents the destination of a one day excursion."""@en ;
+
+        knora-base:objectClassConstraint :location ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasDestinationValue
+
+:hasDestinationValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat Reiseziel"@de ,
+                   "has destination"@en ;
+
+        rdfs:comment """Represents the destination of a one day excursion."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasDiscipline
+
+:hasDiscipline rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "hat Disziplin"@de ,
+                   "has discipline"@en ;
+
+        rdfs:comment """Represents the discipline of an academic field."""@en ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:hasEmployment
+
+:hasEmployment rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Anstellung"@de ,
+                   "employment"@en ;
+
+        rdfs:comment """Represents employment."""@en ;
+
+        knora-base:objectClassConstraint :employment ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasEmploymentValue
+
+:hasEmploymentValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Anstellung"@de ,
+                   "employment"@en ;
+
+        rdfs:comment """Represents employment."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasEmploymentType
+
+:hasEmploymentType rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Art der Anstellung"@de ,
+                   "type of employment"@en ;
+
+        rdfs:comment """Represents the type of employment."""@en ;
+
+        knora-base:subjectClassConstraint :employment ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:hasEmployer
+
+:hasEmployer rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat Chef*in"@de ,
+                   "has boss"@en ;
+
+        rdfs:comment """Represents a boss-employee relation."""@en ;
+
+        knora-base:objectClassConstraint :person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasEmployerValue
+
+:hasEmployerValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat Chef*in"@de ,
+                   "has boss"@en ;
+
+        rdfs:comment """Represents a boss-employee relation."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasEncounter
+
+:hasEncounter rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Begegnung"@de ,
+                   "Encounter"@en ;
+
+        rdfs:comment """Represents an encounter of two or more people."""@en ;
+
+        knora-base:objectClassConstraint beol:person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasEncounterValue
+
+:hasEncounterValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat Begegnung"@de ,
+                   "has encounter"@en ;
+
+        rdfs:comment """Represents an encounter of two or more people."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasExcursion
+
+:hasExcursion rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Ausflug"@de ,
+                   "Excursion"@en ;
+
+        rdfs:comment """Represents an excursion."""@en ;
+
+        knora-base:objectClassConstraint :excursion ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasExcursionValue
+
+:hasExcursionValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Ausflug"@de ,
+                   "Excursion"@en ;
+
+        rdfs:comment """Represents an excursion."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasSubExcursion
+
+:hasSubExcursion rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Exkursions-Teil"@de ,
+                   "Sub excursion"@en ;
+
+        rdfs:comment """Represents a part of an excursion."""@en ;
+
+        knora-base:objectClassConstraint :subExcursion ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasSubExcursionValue
+
+:hasSubExcursionValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Exkursions-Teil"@de ,
+                   "Sub excursion"@en ;
+
+        rdfs:comment """Represents a part of an excursion."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasGeonameID
+
+:hasGeonameID rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "GeonameID"@de ,
+                   "GeonameID"@en ;
+
+        rdfs:comment """Represents the geoname ID of a location."""@en ;
+
+        knora-base:subjectClassConstraint :location ;
+
+        knora-base:objectClassConstraint knora-base:GeonameValue ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasName
+
+:hasName rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Name"@de ,
+                   "Name"@en ;
+
+        rdfs:comment """Represents the name of an entity."""@en ;
+
+        knora-base:objectClassConstraint knora-base:TextValue ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasOccurrence
+
+:hasOccurrence rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Geschehnis"@de ,
+                   "Occurrence"@en ;
+
+        rdfs:comment """Represents an occurrence type."""@en ;
+
+        knora-base:objectClassConstraint :occurrence ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+
+### ###########################################
+### trip:hasOccurrenceValue
+
+:hasOccurrenceValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Geschehnis"@de ,
+                   "Occurrence"@en ;
+
+        rdfs:comment """Represents an occurrence type."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasOccurrenceType
+
+:hasOccurrenceType rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Geschehnis Art"@de ,
+                   "Occurrence Type"@en ;
+
+        rdfs:comment """Represents the type of an occurrence."""@en ;
+
+        knora-base:subjectClassConstraint :occurrence ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:hasOwner
+
+:hasOwner rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Besitzer*in"@de ,
+                   "Owner"@en ;
+
+        rdfs:comment """Represents the owner of something."""@en ;
+
+        knora-base:objectClassConstraint beol:person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasOwnerValue
+
+:hasOwnerValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Besitzer*in"@de ,
+                   "Owner"@en ;
+
+        rdfs:comment """Represents the owner of something."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasParticipant
+
+:hasParticipant rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Teilnehmer*in"@de ,
+                   "Participant"@en ;
+
+        rdfs:comment """Represents a participant in an activity."""@en ;
+
+        knora-base:objectClassConstraint beol:person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasParticipantValue
+
+:hasParticipantValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Teilnehmer*in"@de ,
+                   "Participant"@en ;
+
+        rdfs:comment """Represents a participant in an activity."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasSalary
+
+:hasSalary rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "hat Gehalt"@de ,
+                   "has Salary"@en ;
+
+        rdfs:comment """Represents the salary of an employment."""@en ;
+
+        knora-base:objectDatatypeConstraint xsd:float ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasSighted
+
+:hasSighted rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat gesichtet"@de ,
+                   "has sighted"@en ;
+
+        rdfs:comment """Represents the sighting of a person"""@en ;
+
+        knora-base:objectClassConstraint beol:person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasSightedValue
+
+:hasSightedValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat gesichtet"@de ,
+                   "has sighted"@en ;
+
+        rdfs:comment """Represents the sighting of a person"""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasStartLocation
+
+:hasStartLocation rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Startort"@de ,
+                   "Starting place of a trip"@en ;
+
+        rdfs:comment """Represents the starting place of a trip."""@en ;
+
+        knora-base:objectClassConstraint :location ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasStartLocationValue
+
+:hasStartLocationValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Startort"@de ,
+                   "Starting place of a trip"@en ;
+
+        rdfs:comment """Represents the starting place of a trip."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasStay
+
+:hasStay rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat Aufenthalt."@de ,
+                   "has Stay"@en ;
+
+        rdfs:comment """Represents a Stay at a specific location."""@en ;
+
+        knora-base:objectClassConstraint :stay ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasStayValue
+
+:hasStayValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat Aufenthalt."@de ,
+                   "has Stay"@en ;
+
+        rdfs:comment """Represents a Stay at a specific location."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasStreetName
+
+:hasStreetName rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "hat einen Strassennamen"@de ,
+                   "has a street address"@en ;
+
+        rdfs:comment """Represents a link to a street address."""@en ;
+
+        knora-base:objectClassConstraint knora-base:TextValue ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasStudent
+
+:hasStudent rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Student*in"@de ,
+                   "Student"@en ;
+
+        rdfs:comment """Represents a student."""@en ;
+
+        knora-base:objectClassConstraint beol:person ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasStudentValue
+
+:hasStudentValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Student*in"@de ,
+                   "Student"@en ;
+
+        rdfs:comment """Represents a student."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasSubJourneyTo
+
+:hasSubJourneyTo rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat Reiseetappe"@de ,
+                   "has subjourney to"@en ;
+
+        rdfs:comment """Represents the destination of a travel stage."""@en ;
+
+        knora-base:objectClassConstraint :location ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasSubJourneyToValue
+
+:hasSubJourneyToValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+            rdfs:label "hat Reiseetappe"@de ,
+                       "has subjourney to"@en ;
+
+            rdfs:comment """Represents the destination of a travel stage."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasTransitOrder
+
+:hasTransitOrder rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Reihenfolge der Durchreise"@de ,
+                   "Order of transit route."@en ;
+
+        rdfs:comment """Represents the order in which one passes through different locations on a journey."""@en ;
+
+        knora-base:objectDatatypeConstraint xsd:int ;
+
+        salsah-gui:guiElement salsah-gui:SimpleText .
+
+
+### ###########################################
+### trip:hasWikiLink
+
+:hasWikiLink rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "hat link zu einer Wikidata Seite"@de ,
+                   "has a link to a wikidata page"@en ;
+
+        rdfs:comment """Represents a link to a wikidata page."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:locatedAt
+
+:locatedAt rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "befindet sich in"@de ,
+                   "located at"@en;
+
+        rdfs:comment """Represents the location of an entity."""@en ;
+
+        knora-base:objectClassConstraint :location ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:locatedAtValue
+
+:locatedAtValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "befindet sich in"@de ,
+                   "located at"@en;
+
+        rdfs:comment """Represents the location of an entity."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:locatedAtArchitecture
+
+:locatedAtArchitecture rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "befindet sich in Gebäude"@de ,
+                   "located at architecture"@en;
+
+        rdfs:comment """Represents the location in a building."""@en ;
+
+        knora-base:objectClassConstraint :architecture ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:locatedAtArchitectureValue
+
+:locatedAtArchitectureValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "befindet sich in"@de ,
+                   "located at"@en;
+
+        rdfs:comment """Represents the location in a building."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:mentionedIn
+
+:mentionedIn rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "erwähnt in Region"@de ,
+                   "mentioned in region"@en ;
+
+        rdfs:comment """Represent the link to a text region in which something is mentioned."""@en ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:mentionedInValue
+
+:mentionedInValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "erwähnt in Region"@de ,
+                   "mentioned in region"@en ;
+
+        rdfs:comment """Represent the link to a text region in which something is mentioned."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:routeOfTravel
+
+:routeOfTravel rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Reiseroute"@de ,
+                   "Route of Travel"@en ;
+
+        rdfs:comment """Represents the route the journey is on, such as a river."""@en ;
+
+        knora-base:objectClassConstraint :location ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:routeOfTravelValue
+
+:routeOfTravelValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Reiseroute"@de ,
+                   "Route of Travel"@en ;
+
+        rdfs:comment """Represents the route the journey is on, such as a river."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:stayedAt
+
+:stayedAt rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat übernachtet in"@de ,
+                   "stayed at"@en ;
+
+        rdfs:comment """Represents a stay at an accommodation."""@en ;
+
+        knora-base:subjectClassConstraint :stay ;
+
+        knora-base:objectClassConstraint :architecture ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:stayedAtValue
+
+:stayedAtValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "hat übernachtet in"@de ,
+                   "stayed at"@en ;
+
+        rdfs:comment """Represents a stay at an accommodation."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:transitThrough
+
+:transitThrough rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "Durchreise"@de ,
+                   "Passing through"@en ;
+
+        rdfs:comment """Represents the location one passes through on a journey."""@en ;
+
+        knora-base:objectClassConstraint :location ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:transitThroughValue
+
+:transitThroughValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "Durchreise"@de ,
+                   "Passing through"@en ;
+
+        rdfs:comment """Represents the location one passes through on a journey."""@en ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasTransportation
+
+:hasTransportation rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "hat Transport"@de ,
+                   "has transportation"@en ;
+
+        rdfs:comment """Represents the usage of a transportation."""@en ;
+
+        knora-base:objectClassConstraint :transportation ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasTransportationValue
+
+:hasTransportationValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        rdfs:label "hat Transport"@de ,
+                   "has transportation"@en ;
+
+            rdfs:comment """Represents the usage of a transportation."""@en ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:hasTransportationType
+
+:hasTransportationType rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasValue ;
+
+        rdfs:label "Transportart"@de ,
+                   "Mode of transportation"@en ;
+
+        rdfs:comment """The mode of transportation during a journey."""@en ;
+
+        knora-base:subjectClassConstraint :transportation ;
+
+        knora-base:objectClassConstraint knora-base:ListValue ;
+
+        salsah-gui:guiElement salsah-gui:List .
+
+
+### ###########################################
+### trip:travelled
+
+:travelled rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+        rdfs:label "reiste"@de ,
+                   "travelled"@en ;
+
+        rdfs:comment """Represents a trip."""@en ;
+
+        knora-base:subjectClassConstraint beol:person ;
+
+        knora-base:objectClassConstraint :travel ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+### ###########################################
+### trip:travelledValue
+
+:travelledValue rdf:type owl:ObjectProperty ;
+
+        rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+        rdfs:label "reiste"@de ,
+                   "travelled"@en ;
+
+        rdfs:comment """Represents a trip."""@en ;
+
+        knora-base:subjectClassConstraint beol:person ;
+
+        knora-base:objectClassConstraint knora-base:LinkValue ;
+
+        salsah-gui:guiElement salsah-gui:Searchbox .
+
+
+
+
+##########################################################
+#
+# CLASSES
+#
+#########################################################
+
+
+
+
+### ###########################################
+### trip:location
+
+:location rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource, dbo:location ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasGeonameID ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasName ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasWikiLink ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasAlternativeName ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "4"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:maxCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "5"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "6"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Ort"@de ,
+                   "Location"@en ;
+
+        rdfs:comment "A resource representing a physical location."@en .
+
+
+### ###########################################
+### trip:settlement
+
+:settlement rdf:type owl:Class ;
+
+        rdfs:subClassOf :location, dbo:settlement ;
+
+        rdfs:label "Siedlung"@de ,
+                   "Human settlement"@en ;
+
+        rdfs:comment "A resource representing a human settlement of any size."@en .
+
+
+### ###########################################
+### trip:landscape
+
+:landscape rdf:type owl:Class ;
+
+        rdfs:subClassOf :location ;
+
+        rdfs:label "Landschaft"@de ,
+                   "Landscape"@en ;
+
+        rdfs:comment "Nature of any type."@en .
+
+
+### ###########################################
+### trip:architecture
+
+:architecture rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource, dbo:ArchitecturalStructure ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasCost ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasOwner ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasName ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasWikiLink ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAt ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "4"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAtValue ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "5"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasStreetName ;
+            owl:maxCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "6"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:maxCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "7"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "8"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasArchitectureType ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "9"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasGeonameID ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "10"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasAlternativeName ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "11"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasOwnerValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "12"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "13"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Architektur"@de ,
+                   "Architecture"@en ;
+
+        rdfs:comment "A physical entity that was constructed by humans."@en .
+
+
+### ###########################################
+### trip:accommodation
+
+:accommodation rdf:type owl:Class ;
+
+        rdfs:subClassOf :architecture ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasAccommodationType ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Unterkunft"@de ,
+                   "accommodation"@en ;
+
+        rdfs:comment "A resource representing an accommodation."@en .
+
+
+### ###########################################
+### trip:travel
+
+:travel rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasDate ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasStartLocation ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasStartLocationValue ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "4"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "5"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Reisen"@de ,
+                "Travel"@en ;
+
+        rdfs:comment "Any type of movement between two locations."@en .
+
+
+### ###########################################
+### trip:journey
+
+:journey rdf:type owl:Class ;
+
+        rdfs:subClassOf :travel ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasStay ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasStayValue ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasDestination ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasDestinationValue ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Reise"@de ,
+                "Journey"@en ;
+
+        rdfs:comment "A journey from one place to another."@en .
+
+
+### ###########################################
+### trip:excursion
+
+:excursion rdf:type owl:Class ;
+
+        rdfs:subClassOf :travel ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasStay ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasStayValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Excursion"@de ,
+                "Exkursion"@en ;
+
+        rdfs:comment "An excursion from a location to another location and back."@en .
+
+
+### ###########################################
+### trip:subExcursion
+
+:subExcursion rdf:type owl:Class ;
+
+        rdfs:subClassOf :excursion ;
+
+        rdfs:label "Excursionsteil"@de ,
+                   "Sub-Exkursion"@en ;
+
+        rdfs:comment "An segment of an excursion."@en .
+
+
+### ###########################################
+### trip:transportation
+
+:transportation rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasTransportationType ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Transport"@de ,
+                   "Transport"@en ;
+
+        rdfs:comment "Represents a transportation event."@en .
+
+
+### ###########################################
+### trip:employment
+
+:employment rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasEmploymentType ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Anstellung"@de ,
+                "Employment"@en ;
+
+        rdfs:comment "Represents a job."@en .
+
+
+### ###########################################
+### trip:activity
+
+:activity rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasActivityType ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAt ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAtValue ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "4"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAtArchitecture ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "5"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAtArchitectureValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "6"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "7"^^xsd:nonNegativeInteger
+        ] ;
+
+
+        rdfs:label "Aktivität"@de ,
+                    "Activity"@en ;
+
+        rdfs:comment "An activity of any type."@en .
+
+
+### ###########################################
+### trip:stay
+
+:stay rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasDate ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :stayedAt ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :stayedAtValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "4"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "5"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Aufenthalt"@de ,
+                    "Stay"@en ;
+
+        rdfs:comment "A stay during a journey of undetermined amount of time."@en .
+
+
+### ###########################################
+### trip:longtermStay
+
+:longtermStay rdf:type owl:Class ;
+
+        rdfs:subClassOf :stay ;
+
+        rdfs:label "Langer Aufenthalt"@de ,
+                   "Longterm Stay"@en ;
+
+        rdfs:comment "The stay at the destination of a main journey."@en .
+
+
+### ###########################################
+### trip:shorttermStay
+
+:shorttermStay rdf:type owl:Class ;
+
+        rdfs:subClassOf :stay ;
+
+        rdfs:label "Kurzaufenthalt"@de ,
+                   "Shortterm Stay"@en ;
+
+        rdfs:comment "Staying at a place during a subjourney or excursion."@en .
+
+
+### ###########################################
+### trip:occurrence
+
+:occurrence rdf:type owl:Class ;
+
+        rdfs:subClassOf knora-base:Resource ,
+
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasOccurrenceType ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "0"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAt ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "1"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAtValue ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "2"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedIn ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "3"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :mentionedInValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "4"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAtArchitecture ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "5"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :locatedAtArchitectureValue ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "6"^^xsd:nonNegativeInteger
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty :hasComment ;
+            owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+            salsah-gui:guiOrder "7"^^xsd:nonNegativeInteger
+        ] ;
+
+        rdfs:label "Geschehnis"@de ,
+                   "occurrence"@en ;
+
+        rdfs:comment "An occurrence of any type."@en .
+
+
+### ###########################################
+### trip:travelDiary
+
+:travelDiary rdf:type owl:Class ;
+
+        rdfs:subClassOf beol:manuscript ;
+
+        rdfs:label "Reisetagebuch"@de ,
+                "Travel Diary"@en ;
+
+        rdfs:comment "Represents a travel diary."@en .
