@@ -29,8 +29,8 @@ This project is hosted by the [Data and Service Center for the Humanities (DaSCH
 The data set "Reisbuchlein_ExampleData" of example data in the folder "ontology" containing 4284 RDF statements must be uploaded to a triplestore that supports RDF-star. To store and query the data we used the [GraphDB Free](https://graphdb.ontotext.com) edition. The following ontologies are to be uploaded together with the dataset.
 
 **Required Ontologies**
-- `trip`
-- `extension_beol`
+- [`trip`](https://github.com/Nora-Olivia-Ammann/trip-ontology/blob/7a63c7d7a6e9617613ca248a485ec6999fe6eb0e/ontology/trip-onto.ttl)
+- [`extension_beol`](https://github.com/Nora-Olivia-Ammann/trip-ontology/blob/7a63c7d7a6e9617613ca248a485ec6999fe6eb0e/ontology/extension_beol-onto.ttl)
 - [`beol`](https://github.com/dasch-swiss/dsp-api/blob/708c21796a76cafab7ffe3f328af8c860fddf70b/test_data/ontologies/beol-onto.ttl)
 - [`knora-base`](https://github.com/dasch-swiss/dsp-api/blob/708c21796a76cafab7ffe3f328af8c860fddf70b/knora-ontologies/knora-base.ttl)
 - [GUI ontology](https://github.com/dasch-swiss/dsp-api/blob/708c21796a76cafab7ffe3f328af8c860fddf70b/knora-ontologies/salsah-gui.ttl)
