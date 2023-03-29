@@ -172,7 +172,7 @@ knora-base:attachedToProject <http://rdfh.ch/projects/yTerZGyxjZVqFMNNKXCDPF> .
 ### ###########################################
 ### trip:hasCost
 
-:hasCost rdf:type owl:ObjectProperty ;
+:hasCost rdf:type owl:DatatypeProperty ;
 
         rdfs:subPropertyOf knora-base:hasValue, currency:hasPrice ;
 
@@ -638,7 +638,7 @@ knora-base:attachedToProject <http://rdfh.ch/projects/yTerZGyxjZVqFMNNKXCDPF> .
 ### ###########################################
 ### trip:hasSalary
 
-:hasSalary rdf:type owl:ObjectProperty ;
+:hasSalary rdf:type owl:DatatypeProperty ;
 
         rdfs:subPropertyOf knora-base:hasValue ;
 
@@ -842,7 +842,7 @@ knora-base:attachedToProject <http://rdfh.ch/projects/yTerZGyxjZVqFMNNKXCDPF> .
 ### ###########################################
 ### trip:hasTransitOrder
 
-:hasTransitOrder rdf:type owl:ObjectProperty ;
+:hasTransitOrder rdf:type owl:DatatypeProperty ;
 
         rdfs:subPropertyOf knora-base:hasValue ;
 
